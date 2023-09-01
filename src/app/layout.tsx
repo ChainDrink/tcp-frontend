@@ -6,7 +6,7 @@ import { PolkadotProvider } from '@/contexts/PolkadotProvider';
 import Navbar from '@/components/Navbar';
 import { SubstrateChain } from '@scio-labs/use-inkathon';
 
-export const alephzeroTestnet: SubstrateChain = {
+const alephzeroTestnet: SubstrateChain = {
   network: 'alephzero-testnet',
   name: 'Aleph Zero Testnet',
   rpcUrls: ['wss://ws.test.azero.dev'],
