@@ -1,5 +1,5 @@
 {
-  "name": "chaindrink",
+  "name": "TCP?",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "@headlessui/tailwindcss": "^0.2.0",
+    "@polkadot/api": "^10.9.1",
+    "@polkadot/api-contract": "^10.9.1",
+    "@polkadot/extension-dapp": "^0.46.5",
+    "@polkadot/react-identicon": "^3.6.2",
+    "@polkadot/types": "^10.9.1",
+    "@polkadot/util": "^12.4.2",
+    "@scio-labs/use-inkathon": "^0.0.6",
+    "@subwallet/wallet-connect": "^0.2.5",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
@@ -19,6 +29,7 @@
     "postcss": "8.4.29",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.10.1",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
   }
