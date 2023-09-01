@@ -8,6 +8,7 @@ import { ContractPromise } from '@polkadot/api-contract';
 import { ContractCallOutcome } from '@polkadot/api-contract/types';
 import { WeightV2 } from '@polkadot/types/interfaces';
 import { useEffect, useMemo, useState } from 'react';
+import Webcam from "react-webcam";
 
 const contractAddress = '5GDu9hdL8UyCELNa3vKSZSyFyS5cjUNkvK8Zy9wRRZUJEbHR';
 
@@ -22,8 +23,8 @@ export default function Home() {
     return new ContractPromise(api, contractMetadata, contractAddress);
   }, [api, contractAddress]);
 
+  // TODO: Add slider to choose how many drinks
   const value = 1;
-
 
   useEffect((): void => {
     async function dryRun() {
@@ -77,6 +78,12 @@ export default function Home() {
     <SectionLayout>
       <div className="h-screen flex flex-col items-center justify-center flex-1 gap-2">
         <h1 className='text-2xl font-semibold'>Hi!</h1>
+
+        <div className="relative">
+          <span className='absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold uppercase text-5xl w-full text-center text-red-500'>Are you sure?</span>
+          <Webcam />
+        </div>
+
 
         <p className='text-lg'>Let&apos;s drink together</p>
 
