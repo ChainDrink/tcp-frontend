@@ -16,8 +16,8 @@ import { useResolveAddressToDomain } from '@azns/resolver-react';
 
 const contractAddress = '5GDu9hdL8UyCELNa3vKSZSyFyS5cjUNkvK8Zy9wRRZUJEbHR';
 const videoConstraints = {
-  width: 1280,
-  height: 720,
+  width: 640,
+  height: 320,
   facingMode: "user"
 };
 
