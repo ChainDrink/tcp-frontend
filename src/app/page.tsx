@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import mantleContractAbi from '../abi/mantleContractAbi.json';
@@ -6,6 +7,7 @@ import azeroContractAbi from '../abi/azeroContractAbi.json';
 import { usePolkadotProvider } from '@/contexts/PolkadotProvider';
 import { getGasLimit } from '@/helpers/gasLimit';
 import SectionLayout from '@/layouts/SectionLayout';
+import SelectWallet from '@/components/WalletsManager/SelectWallet';
 import axios from 'axios';
 import { ContractPromise } from '@polkadot/api-contract';
 import { ContractCallOutcome } from '@polkadot/api-contract/types';
@@ -15,6 +17,8 @@ import Webcam from "react-webcam";
 import './style.css';
 import { utils } from 'ethers';
 import { usePrepareContractWrite, useContractWrite, useAccount } from 'wagmi';
+import { Dialog } from '@headlessui/react';
+import { BsX } from 'react-icons/bs';
 
 const azeroContractAddress = '5GDu9hdL8UyCELNa3vKSZSyFyS5cjUNkvK8Zy9wRRZUJEbHR';
 const videoConstraints = {
@@ -29,6 +33,8 @@ export default function Home() {
   const [outcome, setOutcome] = useState<ContractCallOutcome>();
   const [isTransactionLoading, setIsTransactionLoading] = useState(false);
   const dryRunGasLimit = useMemo(() => api ? getGasLimit(api!) : undefined, [api]);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   // TODO: Add slider to choose how many drinks
   const drinkPrice = 1;
@@ -121,6 +127,11 @@ export default function Home() {
         image: imageSource
       });
     }
+
+    setIsOpen(true);
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 10 * 1000);
   };
 
   return (
@@ -157,6 +168,21 @@ export default function Home() {
         </form>
 
       </div>
+
+      <div className="relative">
+        {isOpen && <div className="fixed inset-0 bg-black/30" aria-hidden="true" />}
+        <Dialog open={isOpen} onClose={() => setIsOpen(!isOpen)} className={'bg-amber-900 p-8 rounded-md w-[400px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'}>
+
+          <Dialog.Panel className={'flex flex-col gap-4'}>
+            <Dialog.Title className={'font-semibold text-2xl flex justify-between items-center'}>Drink is pouring...</Dialog.Title>
+
+            <Dialog.Description>
+              <img src="/pouring-gif.gif" alt="pouring gif" className='w-[256px] h-auto m-auto' />
+            </Dialog.Description>
+          </Dialog.Panel>
+        </Dialog>
+      </div>
+
 
     </SectionLayout>
   );

@@ -4,7 +4,6 @@ import { ConnectMetaMask } from './ConnectMetaMask/ConnectMetaMask';
 import { usePolkadotProvider } from '@/contexts/PolkadotProvider';
 import { useState } from 'react';
 import Link from 'next/link';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export default function Navbar() {
   const { accounts } = usePolkadotProvider();
