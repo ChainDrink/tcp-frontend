@@ -10,6 +10,7 @@ import { useResolveAddressToDomain } from '@azns/resolver-react';
 export default function OrderBookPage() {
   const [leaderboard, setLeaderboard] = useState([]);
   const { account, api, wallet } = usePolkadotProvider();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [chainId, setChainId] = useState<SupportedChainId>(SupportedChainId.AlephZeroTestnet);
   // TODO: Get user address
@@ -32,22 +33,30 @@ export default function OrderBookPage() {
   useEffect(() => {
     async function getLeaderboard() {
       console.log('gettete');
+      setIsLoading(true);
       const result = await axios.get('https://guarded-reef-64958-6829a10e3dd1.herokuapp.com/leaderboard');
       console.log(result.data);
 
-      setLeaderboard(result.data.sort((a, b) => {
+      setLeaderboard(result.data.sort((a: any, b: any) => {
         return new Date(b.created) - new Date(a.created);
       }));
+      setIsLoading(false);
     }
 
-    if(leaderboard.length === 0) {
-      getLeaderboard();
-    }
+    setInterval(() => {
+      if(!isLoading) {
+        getLeaderboard();
+      }
+    }, 3000);
+
+    // if(leaderboard.length === 0) {
+    //   getLeaderboard();
+    // }
   }, [leaderboard]);
 
   return (
     <SectionLayout>
-      <div className="h-screen flex flex-col items-center justify-center flex-1 gap-8">
+      <div className="h-screen flex flex-col items-center justify-center flex-1 gap-8 pt-32">
         <h1 className='text-4xl font-semibold text-red-500 before:content-["Order_Book"] before:scale-105 before:text-white before:absolute'>Order Book</h1>
 
         <div className="flex flex-col gap-2 justify-center items-center">
