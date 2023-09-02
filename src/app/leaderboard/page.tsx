@@ -45,7 +45,7 @@ export default function LeaderboardPage() {
 
   return (
     <SectionLayout>
-      <div className="h-screen flex flex-col items-center justify-center flex-1 gap-8">
+      <div className="min-h-screen flex flex-col items-center flex-1 gap-8 mt-32">
         <h1 className='text-4xl font-semibold text-red-500 before:content-["Leaderboard"] before:scale-105 before:text-white before:absolute'>Leaderboard</h1>
 
         <table className="table-auto gap-2 border-spacing-2">

@@ -48,7 +48,7 @@ export default function OrderBookPage() {
 
   return (
     <SectionLayout>
-      <div className="min-h-screen flex flex-col items-center justify-center flex-1 gap-8 mt-96">
+      <div className="min-h-screen flex flex-col items-center flex-1 gap-8 mt-32">
         <h1 className='text-4xl font-semibold text-red-500 before:content-["Order_Book"] before:scale-105 before:text-white before:absolute'>Order Book</h1>
 
         <div className="flex flex-col gap-2 justify-center items-center">
@@ -56,25 +56,26 @@ export default function OrderBookPage() {
           <img src="/subwallet-qr-code.png" alt="qr code" className='w-auto h-[128px]' />
         </div>
 
-        <table className="table-auto gap-2 border-spacing-2">
-          <thead>
-            <tr>
-              <th>Smile :)</th>
-              <th>Wallet Address</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            {leaderboard.map(({image, amount, walletAddress}, index) => (
-              <tr key={index} className='text-center'>
-                <td><img src={image} alt="image" className='w-[128px] h-auto p-2' /></td>
-                <td><span className='text-xs mx-4 p-2'>{walletAddress}</span></td>
-                <td><span className='p-2'>{amount}</span></td>
+        {leaderboard.length > 0 && (
+          <table className="table-auto gap-2 border-spacing-2">
+            <thead>
+              <tr>
+                <th>Smile :)</th>
+                <th>Wallet Address</th>
+                <th>Amount</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-
+            </thead>
+            <tbody>
+              {leaderboard.map(({image, amount, walletAddress}, index) => (
+                <tr key={index} className='text-center'>
+                  <td><img src={image} alt="image" className='w-[128px] h-auto p-2' /></td>
+                  <td><span className='text-xs mx-4 p-2'>{walletAddress}</span></td>
+                  <td><span className='p-2'>{amount}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
 
     </SectionLayout>
