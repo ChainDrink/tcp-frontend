@@ -7,7 +7,6 @@ import azeroContractAbi from '../abi/azeroContractAbi.json';
 import { usePolkadotProvider } from '@/contexts/PolkadotProvider';
 import { getGasLimit } from '@/helpers/gasLimit';
 import SectionLayout from '@/layouts/SectionLayout';
-import SelectWallet from '@/components/WalletsManager/SelectWallet';
 import axios from 'axios';
 import { ContractPromise } from '@polkadot/api-contract';
 import { ContractCallOutcome } from '@polkadot/api-contract/types';
@@ -18,7 +17,6 @@ import './style.css';
 import { utils } from 'ethers';
 import { usePrepareContractWrite, useContractWrite, useAccount } from 'wagmi';
 import { Dialog } from '@headlessui/react';
-import { BsX } from 'react-icons/bs';
 
 const azeroContractAddress = '5GDu9hdL8UyCELNa3vKSZSyFyS5cjUNkvK8Zy9wRRZUJEbHR';
 const videoConstraints = {
@@ -33,10 +31,8 @@ export default function Home() {
   const [outcome, setOutcome] = useState<ContractCallOutcome>();
   const [isTransactionLoading, setIsTransactionLoading] = useState(false);
   const dryRunGasLimit = useMemo(() => api ? getGasLimit(api!) : undefined, [api]);
-
   const [isOpen, setIsOpen] = useState(false);
 
-  // TODO: Add slider to choose how many drinks
   const drinkPrice = 1;
 
   const { config } = usePrepareContractWrite({
