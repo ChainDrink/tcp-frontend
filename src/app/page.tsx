@@ -167,7 +167,7 @@ export default function Home() {
 
       <div className="relative">
         {isOpen && <div className="fixed inset-0 bg-black/30" aria-hidden="true" />}
-        <Dialog open={isOpen} onClose={() => setIsOpen(!isOpen)} className={'bg-amber-900 p-8 rounded-md w-[400px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'}>
+        <Dialog open={isOpen} onClose={() => setIsOpen(!isOpen)} className={'bg-amber-900 z-20 p-8 rounded-md w-[400px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'}>
 
           <Dialog.Panel className={'flex flex-col gap-4'}>
             <Dialog.Title className={'font-semibold text-2xl flex justify-between items-center'}>Drink is pouring...</Dialog.Title>
