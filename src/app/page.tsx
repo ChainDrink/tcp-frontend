@@ -100,6 +100,7 @@ export default function Home() {
 
           console.log(status);
 
+          // TODO: Upload image to web3storage
           await axios.post('https://guarded-reef-64958-6829a10e3dd1.herokuapp.com/leaderboard', {
             walletAddress: account?.address,
             amount: drinkPrice,

@@ -19,7 +19,7 @@ export default function OrderBookPage() {
   const [customRouterAddress, setCustomRouterAddress] = useState<string>();
 
   // TODO: HOOK for useLeaderboard
-
+  // TODO: Move to separate row component
   const addressResolver = useResolveAddressToDomain(lookupAddress, {
     debug: true,
     chainId,
@@ -31,28 +31,20 @@ export default function OrderBookPage() {
   console.log(addressResolver);
 
   useEffect(() => {
-    async function getLeaderboard() {
-      console.log('gettete');
-      setIsLoading(true);
+    const intervalId = setInterval(async () => {
+
       const result = await axios.get('https://guarded-reef-64958-6829a10e3dd1.herokuapp.com/leaderboard');
       console.log(result.data);
 
+      setIsLoading(false);
       setLeaderboard(result.data.sort((a: any, b: any) => {
         return new Date(b.created) - new Date(a.created);
       }));
-      setIsLoading(false);
-    }
-
-    setInterval(() => {
-      if(!isLoading) {
-        getLeaderboard();
-      }
     }, 3000);
 
-    // if(leaderboard.length === 0) {
-    //   getLeaderboard();
-    // }
-  }, [leaderboard]);
+    return () => clearInterval(intervalId);
+
+  }, [useState]);
 
   return (
     <SectionLayout>
