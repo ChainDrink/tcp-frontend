@@ -2,16 +2,23 @@ import SelectWalletModal from './WalletsManager/SelectWalletModal';
 import SelectAccount from './WalletsManager/SelectAccount';
 import { usePolkadotProvider } from '@/contexts/PolkadotProvider';
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Navbar() {
   const { accounts } = usePolkadotProvider();
   const [openModal, setIsOpenModal] = useState(false);
 
   return (
-    <nav className="fixed w-full flex justify-between p-4">
-      <span className="font-bold text-amber-500">
+    <nav className="fixed w-full flex justify-between p-8">
+      <Link href="/" className="font-bold text-amber-500">
           TCP<span className='text-white'>?</span>
-      </span>
+      </Link>
+
+      <div className="flex gap-4">
+        <Link href={'/leaderboard'} className='uppercase font-medium text-sm'>Leaderboard</Link>
+        <Link href={'/order-book'} className='uppercase font-medium text-sm'>Order Book</Link>
+      </div>
+
 
       {accounts ?
         <SelectAccount /> :

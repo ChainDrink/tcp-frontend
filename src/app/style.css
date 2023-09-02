@@ -1,0 +1,3 @@
+.are-you-sure::before {
+  content: 'Are you sure?'
+}
