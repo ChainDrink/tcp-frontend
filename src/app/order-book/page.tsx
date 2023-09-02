@@ -68,20 +68,24 @@ export default function OrderBookPage() {
 
 
         {leaderboard.length > 0 && (
-          <table className="table-auto gap-2 border-spacing-2">
-            <thead>
-              <tr>
-                <th>Smile :)</th>
-                <th>Wallet Address</th>
-                <th>Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              {leaderboard.map(({image, amount, walletAddress}, index) => (
-                <TableElement key={index} image={image} amount={amount} walletAddress={walletAddress} />
-              ))}
-            </tbody>
-          </table>
+          <>
+            <h5 className='text-xl font-semibold text-center'>Recent Orders</h5>
+            <table className="table-auto gap-2 border-spacing-2">
+              <thead>
+                <tr>
+                  <th className='lg:inline hidden'>Smile :)</th>
+                  <th>Wallet Address</th>
+                  {/* <th>Amount</th> */}
+                </tr>
+              </thead>
+              <tbody>
+                {leaderboard.map(({image, amount, walletAddress}, index) => (
+                  <TableElement key={index} image={image} walletAddress={walletAddress} />
+                ))}
+              </tbody>
+            </table>
+          </>
+
         )}
       </div>
 

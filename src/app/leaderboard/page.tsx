@@ -1,13 +1,15 @@
 'use client';
 
-import { usePolkadotProvider } from '@/contexts/PolkadotProvider';
 import SectionLayout from '@/layouts/SectionLayout';
 import TableElement from '@/components/Table/TableElement';
 import axios from 'axios';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+const groupByKey = (list: any, key: any) => list.reduce((hash: any, obj: any) => ({...hash, [obj[key]]:( hash[obj[key]] || [] ).concat(obj)}), {});
+
 
 export default function LeaderboardPage() {
-  const [leaderboard, setLeaderboard] = useState([]);
+  const [leaderboard, setLeaderboard] = useState<any[]>([]);
 
 
   useEffect(() => {
@@ -16,7 +18,10 @@ export default function LeaderboardPage() {
       const result = await axios.get('https://guarded-reef-64958-6829a10e3dd1.herokuapp.com/leaderboard');
       console.log(result.data);
 
-      setLeaderboard(result.data);
+      const groupped = groupByKey(result.data, 'walletAddress');
+      console.log(groupped, Object.keys(groupped));
+
+      setLeaderboard(groupped);
     }
 
     if(leaderboard.length === 0) {
@@ -32,14 +37,13 @@ export default function LeaderboardPage() {
         <table className="table-auto gap-2 border-spacing-2">
           <thead>
             <tr>
-              <th>Smile :)</th>
               <th>Wallet Address</th>
               <th>Amount</th>
             </tr>
           </thead>
           <tbody>
-            {leaderboard.map(({image, amount, walletAddress}, index) => (
-              <TableElement key={index} image={image} amount={amount} walletAddress={walletAddress} />
+            {Object.keys(leaderboard).map((address: any, index) => (
+              <TableElement key={index} amount={leaderboard[address].length as number} walletAddress={address} />
             ))}
           </tbody>
         </table>

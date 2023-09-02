@@ -11,7 +11,7 @@ export default function Navbar() {
   const [openModal, setIsOpenModal] = useState(false);
 
   return (
-    <nav className="fixed w-full flex p-8 bg-black items-center z-20 lg:flex-row flex-col gap-10">
+    <nav className="fixed w-full flex p-8 bg-black items-center z-20 lg:flex-row flex-col gap-6">
       <Link href="/" className="font-bold text-amber-500">
           TCP<span className='text-white'>?</span>
       </Link>
