@@ -16,8 +16,8 @@ import { useResolveAddressToDomain } from '@azns/resolver-react';
 
 const contractAddress = '5GDu9hdL8UyCELNa3vKSZSyFyS5cjUNkvK8Zy9wRRZUJEbHR';
 const videoConstraints = {
-  width: 640,
-  height: 320,
+  width: 320,
+  height: 480,
   facingMode: "user"
 };
 
@@ -127,16 +127,16 @@ export default function Home() {
         <h1 className='text-2xl font-semibold'>Hi!</h1>
 
         <div className="relative">
-          <div className='z-10 absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold uppercase text-5xl w-full text-center'>
+          <div className='z-10 absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold uppercase text-3xl w-full text-center'>
             <span className='are-you-sure text-center text-red-500 before:scale-105 before:text-white before:absolute'>Are you sure?</span>
           </div>
 
           <Webcam className='border-4 border-white'
             audio={false}
-            height={320}
+            height={480}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
-            width={640}
+            width={320}
             videoConstraints={videoConstraints}
             mirrored
           />

@@ -35,7 +35,9 @@ export default function OrderBookPage() {
       const result = await axios.get('https://guarded-reef-64958-6829a10e3dd1.herokuapp.com/leaderboard');
       console.log(result.data);
 
-      setLeaderboard(result.data);
+      setLeaderboard(result.data.sort((a, b) => {
+        return new Date(b.created) - new Date(a.created);
+      }));
     }
 
     if(leaderboard.length === 0) {
@@ -64,9 +66,9 @@ export default function OrderBookPage() {
           <tbody>
             {leaderboard.map(({image, amount, walletAddress}, index) => (
               <tr key={index} className='text-center'>
-                <td><img src={image} alt="image" className='w-[128px] h-auto' /></td>
-                <td><span className='text-xs mx-4'>{walletAddress}</span></td>
-                <td><span>{amount}</span></td>
+                <td><img src={image} alt="image" className='w-[128px] h-auto p-2' /></td>
+                <td><span className='text-xs mx-4 p-2'>{walletAddress}</span></td>
+                <td><span className='p-2'>{amount}</span></td>
               </tr>
             ))}
           </tbody>
