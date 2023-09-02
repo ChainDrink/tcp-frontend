@@ -38,7 +38,7 @@ export default function OrderBookPage() {
 
       setIsLoading(false);
       setLeaderboard(result.data.sort((a: any, b: any) => {
-        return new Date(b.created) - new Date(a.created);
+        return (new Date(b.created) as any) - (new Date(a.created) as any);
       }));
     }, 3000);
 
