@@ -48,7 +48,7 @@ export default function OrderBookPage() {
 
   return (
     <SectionLayout>
-      <div className="h-screen flex flex-col items-center justify-center flex-1 gap-8 pt-32">
+      <div className="min-h-screen flex flex-col items-center justify-center flex-1 gap-8 mt-96">
         <h1 className='text-4xl font-semibold text-red-500 before:content-["Order_Book"] before:scale-105 before:text-white before:absolute'>Order Book</h1>
 
         <div className="flex flex-col gap-2 justify-center items-center">
