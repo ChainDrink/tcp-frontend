@@ -2,6 +2,7 @@
 
 import { usePolkadotProvider } from '@/contexts/PolkadotProvider';
 import SectionLayout from '@/layouts/SectionLayout';
+import TableElement from '@/components/Table/TableElement';
 import axios from 'axios';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { SupportedChainId } from '@azns/resolver-core';
@@ -48,13 +49,23 @@ export default function OrderBookPage() {
 
   return (
     <SectionLayout>
-      <div className="min-h-screen flex flex-col items-center flex-1 gap-8 mt-32">
-        <h1 className='text-4xl font-semibold text-red-500 before:content-["Order_Book"] before:scale-105 before:text-white before:absolute'>Order Book</h1>
+      <div className="min-h-screen flex flex-col items-center flex-1 gap-8 lg:mt-32 mt-64">
+        <h1 className='text-4xl font-semibold text-red-500 before:content-["Order_a_drink!"] before:scale-105 before:text-white before:absolute'>Order a drink!</h1>
 
-        <div className="flex flex-col gap-2 justify-center items-center">
-          <h2 className='text-xl font-semibold text-amber-600'>Scan to drink!</h2>
-          <img src="/subwallet-qr-code.png" alt="qr code" className='w-auto h-[128px]' />
+        <div className="grid grid-cols-2 gap-20 text-center">
+          <div className="flex flex-col gap-2 justify-center items-center">
+            <h2 className='text-md font-semibold text-amber-600'>Scan to order <br />with AlephZero</h2>
+            <img src="/subwallet-qr-code.png" alt="qr code" className='w-auto h-[128px]' />
+            <h2 className='text-sm font-semibold text-amber-600'>Pay with $AZERO</h2>
+          </div>
+
+          <div className="flex flex-col gap-2 justify-center items-center">
+            <h2 className='text-md font-semibold text-amber-600'>Scan to order <br />with Mantle</h2>
+            <img src="/metamask-qr-code.png" alt="qr code" className='w-auto h-[128px]' />
+            <h2 className='text-sm font-semibold text-amber-600'>Pay with $MNT</h2>
+          </div>
         </div>
+
 
         {leaderboard.length > 0 && (
           <table className="table-auto gap-2 border-spacing-2">
@@ -67,11 +78,7 @@ export default function OrderBookPage() {
             </thead>
             <tbody>
               {leaderboard.map(({image, amount, walletAddress}, index) => (
-                <tr key={index} className='text-center'>
-                  <td><img src={image} alt="image" className='w-[128px] h-auto p-2' /></td>
-                  <td><span className='text-xs mx-4 p-2'>{walletAddress}</span></td>
-                  <td><span className='p-2'>{amount}</span></td>
-                </tr>
+                <TableElement key={index} image={image} amount={amount} walletAddress={walletAddress} />
               ))}
             </tbody>
           </table>
