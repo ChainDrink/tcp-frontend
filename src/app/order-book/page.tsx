@@ -48,6 +48,11 @@ export default function OrderBookPage() {
       <div className="h-screen flex flex-col items-center justify-center flex-1 gap-8">
         <h1 className='text-4xl font-semibold text-red-500 before:content-["Order_Book"] before:scale-105 before:text-white before:absolute'>Order Book</h1>
 
+        <div className="flex flex-col gap-2 justify-center items-center">
+          <h2 className='text-xl font-semibold text-amber-600'>Scan to drink!</h2>
+          <img src="/subwallet-qr-code.png" alt="qr code" className='w-auto h-[128px]' />
+        </div>
+
         <table className="table-auto gap-2 border-spacing-2">
           <thead>
             <tr>
